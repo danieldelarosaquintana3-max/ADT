@@ -10,7 +10,9 @@ public class Excercise1File {
 			System.out.println("Directorio absoluto: " + x.getAbsolutePath());
 		}else {
 			try {
+				System.out.println("No existe");
 				x.createNewFile();
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
