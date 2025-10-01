@@ -1,5 +1,6 @@
 package unidad1.examples;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.FileVisitor;
@@ -18,7 +19,7 @@ public class PathExampleTreeNIOClass {
 			@Override
 			public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
 				// TODO Auto-generated method stub
-				System.out.println("Visited File:" + dir);
+				System.out.println("Visited Directory: " + dir);
 				
 				return FileVisitResult.CONTINUE;
 			}
@@ -26,22 +27,27 @@ public class PathExampleTreeNIOClass {
 			@Override
 			public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
 				// TODO Auto-generated method stub
-				return null;
+				System.out.println("File visited: "+ file);
+				return FileVisitResult.CONTINUE;
+
 			}
 
 			@Override
 			public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
 				// TODO Auto-generated method stub
-				return null;
+				return FileVisitResult.CONTINUE;
+
 			}
 
 			@Override
 			public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
 				// TODO Auto-generated method stub
-				return null;
+				return FileVisitResult.CONTINUE;
+
 			}
 
 			
 		});
+		
 	}
 }
