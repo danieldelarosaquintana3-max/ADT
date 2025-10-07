@@ -1,23 +1,19 @@
 package Tests;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Test1 {
-	public static void main(String[] args) throws IOException { 
-		Path p =  Paths.get("C://");
-		System.out.println("----------------");
-		try (DirectoryStream<Path> stream = Files.newDirectoryStream(p)){
-			for(Path r : stream) {
-				System.out.println(r.getFileName());
-				
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
+	public static void main(String[] args) throws IOException{ 
+		
+		File f = new File("C:\\Users\\danie\\Desktop\\test.txt");
+		FileReader f2 = new FileReader(f) ;
+		
+		int i;
+		while((i = f2.read()) != -1) {
+			System.out.println((char) i);
 		}
-		System.out.println("----------------");
+		
 	}
 }

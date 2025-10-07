@@ -1,17 +1,24 @@
 package Tests;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Test2 {
-	public static void main(String[] args) throws FileNotFoundException {
+    private static final String vowels = "AEIOUaeiou";
 
-		Scanner sc = new Scanner(new File("C:\\Users\\danie\\Desktop\\arp.txt"));
-		String s;
-		while((s = sc.nextLine() )!= null) {
-			System.out.println(s);
-		}
-	}
-	
+    public static void main(String[] args) throws IOException {
+//    	var res =
+//        Files.lines(Paths.get("C:\\Users\\danie\\Desktop\\test.txt"))
+//            .flatMap(line -> Arrays.stream(line.split("")))
+//            .filter(ch -> vowels.contains(ch))
+//            .count();
+//    	
+//    	System.out.println(res);
+    	
+    	Path p = Paths.get("C:\\Users\\danie\\Desktop\\test.txt");
+    	Files.lines(p)
+    		.forEach(t -> System.out.println(t));
+    }
 }
