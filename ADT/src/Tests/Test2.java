@@ -1,16 +1,25 @@
 package Tests;
 
-import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class Test2 {
 
     public static void main(String[] args) throws IOException {
-    	PrintWriter pw = new PrintWriter(new File("test.txt"));
-    	pw.println("AAAAAA");
-    	pw.println("AAAAAA");
-    	pw.println("AAAAAA");
-    	pw.flush();
+    	String d = "test.txt";
+    	try(FileOutputStream fo = new FileOutputStream(d,true)) {
+    		for(int i = 0; i< 10;i++) {
+    			fo.write(i);
+    		}
+    		try (FileInputStream fi = new FileInputStream(d)){
+    			int m;
+				while((m = fi.read())!= -1) {
+					System.out.println(m);
+				}
+			} 
+    	}catch (Exception e) {
+			// TODO: handle exception
+		}
     }
 }
