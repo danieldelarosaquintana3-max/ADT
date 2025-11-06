@@ -8,25 +8,27 @@ import java.nio.Buffer;
 public class LeerFicheroAleatorioRegistroConcreto {
 	
     public static void main(String[] args) {
-		try (RandomAccessFile ra = new RandomAccessFile(new File("test.txt"), "rw")) {
-			ra.seek(1);
-			ra.writeInt(1);
+    	int posicion = 5;
+    	
+    	int registro = (posicion -1 ) * 36;
+    	
+		try (RandomAccessFile ra = new RandomAccessFile(new File("test1.dat"), "rw")) {
+
+			ra.seek(0);
 			
-			StringBuffer buffer = new StringBuffer("Holaa");
+			ra.writeInt(posicion);
+			StringBuffer apellidos = new StringBuffer("Urcera");
+			
+			apellidos.setLength(apellidos.length());
+			ra.writeChars(apellidos.toString());
+			ra.writeInt(15);
+			ra.writeDouble(22.13);
 			
 			
 			
 			
-			ra.seek(2);
-			ra.writeChars(buffer.toString());
 			
-			ra.seek(2);
-			System.out.println(ra.readLine());
 			
-			ra.seek(5 * 10);
-			ra.writeInt(10);
-			ra.seek(50);
-			System.out.println(ra.readInt());
 			
 		}catch (Exception e) {
 			e.printStackTrace();
