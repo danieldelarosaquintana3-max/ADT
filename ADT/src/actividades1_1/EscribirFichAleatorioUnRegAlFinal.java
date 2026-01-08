@@ -19,11 +19,9 @@ public class EscribirFichAleatorioUnRegAlFinal {
 				    }
 				   
 				} catch (IOException e) {
-				    e.printStackTrace(); // Manejo adecuado del error
+				    e.printStackTrace(); 
 				}
-				int departamento = ra.readInt();
-				Double salario  = ra.readDouble();
-			    System.out.println(id + " ," + apellido + " ," + departamento + " ," + salario);
+				
 				
 			}else {
 				throw new IllegalArgumentException("No existe nada en este registro");

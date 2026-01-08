@@ -4,46 +4,59 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
 import java.nio.file.Files;
 
-public class Actividad3 {
-	public static void main(String[] args) {
-		BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
-		
-		try {
-			
-			String text = br.readLine();
-			String [] textS = text.split(" ");
-			try {
-				File f = new File("test.txt");
-				FileWriter fw = new FileWriter(f);
-				
-				int id = Integer.parseInt(textS[0]);
-				String apellido = textS[1];
-				int departamento = Integer.parseInt(textS[2]);
-				double salario =  Double.parseDouble(textS[3]);
-				
-				StringBuilder sb = new StringBuilder();
+/*
+ * 	REG POS 0 = ID
+ * 	
+ * 
+ */
 
-				sb.append(id + " ");
-				sb.append(apellido + " ");
-				sb.append(departamento + " ");
-				sb.append(salario);
+public class Actividad3 {
+	
+	
+	public static void main(String[] args) {
+		int posReg = 0;
+		
+		int id = 12;
+		StringBuilder apellido = new StringBuilder("de la Rosa");
+		int departamento = 2000;
+		Double salario =  2000.2D;
+		
+		try (RandomAccessFile raf = new RandomAccessFile(new File("test1.dat"), "rw")){
+			
+			if(raf.read() != 0) {
+				raf.seek(posReg); 
+				raf.writeInt(posReg);
+				System.out.println(raf.getFilePointer());
 				
-				fw.write(sb.toString());
-				fw.flush();
 				
+				for(int i = 0; i < apellido.length(); i++) {
+					raf.writeChar(apellido.charAt(i));
+				}
 				
-			} catch (Exception e) {
-				System.out.println("Valor mal puesto");
+				raf.writeInt(departamento);
+				
+				raf.writeDouble(salario);
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			else {
+				
+				raf.seek(0);
+				id = raf.readInt();
+				StringBuilder apellido1 = new StringBuilder();
+				for(int i = 0;i < apellido.length(); i ++) {
+					apellido1.append(raf.readChar());
+				}
+				departamento = raf.readInt();
+				salario = raf.readDouble();
+				
+				System.out.printf("ID : %d , APELLIDO : %s , DEPARTAMENTO : %d , SALARIO : %f " ,id,apellido1,departamento,salario);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
 }
